@@ -71,3 +71,7 @@ Before you begin, ensure you have met the following requirements:
 - - Java 8
 - - Maven
 - build: `mvn clean install` or `mvn clean install -U`
+
+## TODO:
+    - Test cases will complete
+    - Java 17 will downgrade Java 8 features
