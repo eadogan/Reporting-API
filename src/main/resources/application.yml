@@ -1,1 +1,20 @@
+# server port
+server:
+  port: 8080
 
+# H2 db details
+spring:
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+
+# JWT secret key
+# JWT expiration is 10 minutes
+token:
+  secret:
+    apikey: "48a868a4042f634ac04a117f00a872023jk80c4b32c4acb3edc5e15f4511"
+  expirationms: "600000"
