@@ -54,25 +54,6 @@ public class TransactionControllerTest {
 
     @Test
     @DisplayName("Should return success response when reports requested with valid params")
-    public void shouldReturnResponse_whenReportsRequestedWithValidParams() {
-        ReportRequest mockedReportRequest = mock(ReportRequest.class);
-
-
-//        assertThrows(InvalidTransactionException.class,
-//                () -> transactionController.reports(mockedReportRequest));
-
-        doReturn(new InvalidTransactionException())
-                .when(transactionController).reports(mockedReportRequest);
-
-//        ResponseEntity<ReportResponse> actual = this.transactionController.reports(mockedReportRequest);
-
-//        assertEquals(HttpStatus.OK, actual.getStatusCode());
-//        assertEquals(actual.getBody().getStatus(), StatusEnum.APPROVED);
-//        assertThat(actual.getBody().getReportModel()).hasSize(0);
-    }
-
-    @Test
-    @DisplayName("Should return success response when reports requested with valid params")
     public void shouldReturnSuccessResponse_whenReportsRequestedWithValidParams() {
         ReportRequest mockedReportRequest = mock(ReportRequest.class);
         mockedReportRequest.setFromDate(Date.valueOf("2024-01-24"));
