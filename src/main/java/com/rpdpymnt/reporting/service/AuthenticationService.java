@@ -6,6 +6,8 @@ import com.rpdpymnt.reporting.domain.request.SignInRequest;
 import com.rpdpymnt.reporting.domain.request.SignUpRequest;
 import com.rpdpymnt.reporting.domain.response.AuthenticationResponse;
 import com.rpdpymnt.reporting.entity.UserEntity;
+import com.rpdpymnt.reporting.exception.InvalidDataException;
+import com.rpdpymnt.reporting.exception.InvalidUserException;
 import com.rpdpymnt.reporting.repository.UserRepository;
 import com.rpdpymnt.reporting.util.RoleEnum;
 import com.rpdpymnt.reporting.util.StatusEnum;
@@ -26,16 +28,20 @@ public class AuthenticationService {
   private final AuthenticationManager authenticationManager;
 
     public UserIdModel signup(SignUpRequest request) {
-        var user = UserEntity
-                .builder()
-                .name(request.getName())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .role(RoleEnum.ROLE_USER)
-                .build();
+        try {
+            var user = UserEntity
+                    .builder()
+                    .name(request.getName())
+                    .email(request.getEmail())
+                    .password(passwordEncoder.encode(request.getPassword()))
+                    .role(RoleEnum.ROLE_USER)
+                    .build();
 
-        user = userService.save(user);
-        return new UserIdModel(user.getId());
+            user = userService.save(user);
+            return new UserIdModel(user.getId());
+        } catch (InvalidUserException e) {
+            throw new InvalidUserException("Invalid user details {}", e);
+        }
     }
 
 

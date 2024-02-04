@@ -41,19 +41,6 @@ public class CustomExceptionHandler extends BaseExceptionHandler {
         final ErrorResponse response = new ErrorResponse(false, ex.getMessage());
         return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
     }
-    @ExceptionHandler(IllegalAmountException.class)
-    protected ResponseEntity handleIllegalAmountException(IllegalAmountException ex) {
-        log.error("Wrong amount, {}", ex);
-        final ErrorResponse response = new ErrorResponse(false, ex.getMessage());
-        return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(InsufficientFundsException.class)
-    protected ResponseEntity handleInsufficientFundsException(InsufficientFundsException ex) {
-        log.error("Insufficient funds, {}", ex);
-        final ErrorResponse response = new ErrorResponse(false, ex.getMessage());
-        return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
-    }
 
     @ExceptionHandler(TransactionNotFoundException.class)
     protected ResponseEntity handleTransactionNotFoundException(TransactionNotFoundException ex) {
@@ -72,6 +59,20 @@ public class CustomExceptionHandler extends BaseExceptionHandler {
     @ExceptionHandler(InvalidTransactionException.class)
     protected ResponseEntity handleAccountException(InvalidTransactionException ex) {
         log.error("Progress failed, {}", ex);
+        final ErrorResponse response = new ErrorResponse(false, ex.getMessage());
+        return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidUserException.class)
+    protected  ResponseEntity handleUserNotCreateException(InvalidUserException ex) {
+        log.error("User not created, {}", ex);
+        final ErrorResponse response = new ErrorResponse(false, ex.getMessage());
+        return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidDataException.class)
+    protected  ResponseEntity handleInvalidReportException(InvalidDataException ex) {
+        log.error("User not created, {}", ex);
         final ErrorResponse response = new ErrorResponse(false, ex.getMessage());
         return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
     }
